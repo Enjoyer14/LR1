@@ -1,0 +1,60 @@
+#include "menu/CMenu.h"
+#include "menu/CMenuItem.h"
+
+using namespace std;
+
+const int ITEMS_NUMBER = 3;
+
+#pragma region MenuFunction
+int FindSquare() {
+    int number{};
+    std::cout << "Введите целое число: ";
+    std::cin >> number;
+    std::cout << "Квадратный корень числа " << number << ": " << sqrt(number) << std::endl;
+    return 1;
+}
+
+int DrawCircle() {
+    int x, y;
+    int circle_radius = 5;
+
+    for (y = 0; y < 2 * circle_radius + 1; y++) {
+        for (x = 0; x < 2 * circle_radius + 1; x++) {
+            if (static_cast<int>(hypot(abs(circle_radius - x), abs(circle_radius - y)) == circle_radius)) {
+                cout << "*";
+            }
+            else {
+                cout << " ";
+            }
+        }
+        cout << "\n";
+
+    }
+    cout << "\n";
+    return 2;
+}
+
+int DoNothing() {
+    std::cout << "НИЧЕГО ДЕЛАЕТСЯ\n\n";
+    return 3;
+}
+
+#pragma endregion
+
+int main() {
+    setlocale(LC_ALL, "RU");
+    CMenuItem items[ITEMS_NUMBER]{
+        CMenuItem{"Найти квадратный корень введенного числа.", FindSquare},
+        CMenuItem{"Вывести кружок в консоли. ", DrawCircle},
+        CMenuItem{"Сделать ничего. ", DoNothing},
+    };
+    CMenu menu("My console menu", items, ITEMS_NUMBER);
+    while (menu.runCommand()) {
+        system("pause");
+        system("cls");
+    };
+
+    
+
+    return 0;
+}

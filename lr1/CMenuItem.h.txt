@@ -1,0 +1,19 @@
+#pragma once
+
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+class CMenuItem {
+public:
+    typedef int(*Func)();
+    CMenuItem(string, Func);
+    ~CMenuItem();
+    Func func{};
+    string item_name{};
+    string getName();
+    void print();
+    int run();
+};
