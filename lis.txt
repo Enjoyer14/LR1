@@ -1,0 +1,179 @@
+#include <iostream>
+#include <string>
+
+template<typename T>
+class List
+{
+
+private:
+
+	template<typename T>
+	class Node
+	{
+	public:
+		Node* pNext;
+		T data;
+		Node(T data = T(), Node* pNext = nullptr) {
+			this->data = data;
+			this->pNext = pNext;
+		}
+	};
+
+	Node<T>* head;
+	int Size;
+
+public:
+
+	List();
+	~List();
+
+	void pop_front();
+	void pop_back();
+	void clear();
+	void push_back(T data);
+	int GetSize() { return Size; }
+	T& operator[](const int index);
+	void push_front(T data);
+	void insert(T data, int index);
+	void removeAt(int index);
+};
+
+template<typename T>
+List<T>::List()
+{
+	Size = 0;
+	head = nullptr;
+}
+
+template<typename T>
+List<T>::~List()
+{
+	while (Size != 0) {
+		pop_front();
+	}
+}
+
+template<typename T>
+void List<T>::pop_front()
+{
+	Node<T> *temp = head;
+	head = head->pNext;
+	delete temp;
+	Size--;
+}
+
+template<typename T>
+void List<T>::pop_back()
+{
+	removeAt(Size - 1);
+}
+
+template<typename T>
+void List<T>::clear()
+{
+	while (Size != 0) {
+		pop_front();
+	}
+}
+
+template<typename T>
+void List<T>::push_back(T data)
+{
+	if (head == nullptr)
+	{
+		head = new Node<T>(data);
+	}
+	else
+	{
+		Node<T>* current = this->head;
+
+		while (current->pNext != nullptr)
+		{
+			current = current->pNext;
+		}
+		current->pNext = new Node<T>(data);
+	}
+	Size++;
+}
+
+template<typename T>
+T& List<T>::operator[](int index)
+{
+	int count{};
+	Node<T>* current = this->head;
+	while (current != nullptr)
+	{
+		if (count == index) 
+		{
+			return current->data;
+		}
+		current = current->pNext;
+		count++;
+	}
+}
+
+template<typename T>
+void List<T>::push_front(T data)
+{
+	head = new Node<T>(data, head);
+	Size++;
+}
+
+template<typename T>
+void List<T>::insert(T data, int index)
+{
+
+	if (index == 0)
+	{
+		push_front(data);
+	}
+	else
+	{
+		Node<T>* prev = this->head;
+		for (int i{}; i < index - 1; i++)
+		{
+			prev = prev->pNext;
+		}
+
+		Node<T>* NewNode = new Node<T>(data, prev->pNext);
+		prev->pNext = NewNode;
+		Size++;
+	}
+}
+
+template<typename T>
+void List<T>::removeAt(int index)
+{
+	if (index == 0)
+	{
+		pop_front();
+	}
+	else
+	{
+		Node<T>* prev = this->head;
+
+		for (int i{}; i < index - 1; i++)
+		{
+			prev = prev->pNext;
+		}
+
+		Node<T>* toDelete = prev->pNext;
+		prev->pNext = toDelete->pNext;
+
+		delete toDelete;
+
+		Size--;
+	}
+}
+
+int main() {
+	List<int> list1;
+	list1.push_back(15);
+	list1.push_back(54);
+	list1.push_front(5);
+
+	for (int i{}; i < list1.GetSize(); i++)
+	{
+		std::cout << list1[i] << '\t';
+	}
+}
