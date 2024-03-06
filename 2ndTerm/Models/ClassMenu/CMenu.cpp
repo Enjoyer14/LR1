@@ -8,12 +8,12 @@ void CMenu::print() {
         items[i].print();
         std::cout << std::endl;
     }
-    std::cout << "0.Выход" << std::endl;
+    std::cout << "0.Exit" << std::endl;
 }
 
 int CMenu::runCommand(User* worker, int &currentCount, int &count) {
     print();
-    std::cout << "\nВыбор: ";
+    std::cout << "\nSelect: ";
     std::cin >> select;
     std::cin.ignore(32767, '\n');
     if(select <= 0){
@@ -24,7 +24,7 @@ int CMenu::runCommand(User* worker, int &currentCount, int &count) {
 
 int CMenu::runCommand() {
     print();
-    std::cout << "\nВыбор: ";
+    std::cout << "\nSelect: ";
     std::cin >> select;
     if (select <= 0) {
         return 0;

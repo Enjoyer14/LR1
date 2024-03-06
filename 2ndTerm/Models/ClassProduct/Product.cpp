@@ -9,8 +9,12 @@ Product::Product(std::string productType, std::string productTitle, double cost,
 	this->quantity = quantity;
 }
 
+Product::Product(){
+	
+}
+
 void Product::Print() {
-	std::cout << "Тип продукта: " << productType << '\n' << "Название: " << productTitle << '\n' << "Цена: " << cost << '\n' << "Количество: " << quantity << std::endl;
+	std::cout << "Product type: " << productType << '\n' << "Product title: " << productTitle << '\n' << "Cost: " << cost << '\n' << "Quantity: " << quantity << std::endl;
 }
 
 void Product::SetCost(double cost)
@@ -21,4 +25,22 @@ void Product::SetCost(double cost)
 void Product::SetQuantity(int quantity)
 {
 	this->quantity = quantity;
+}
+
+void Product::AddInfo()
+{
+	std::cout << "Enter type: ";
+	std::cin >> this->productType;
+
+	std::cout << "Enter product title: ";
+	std::cin >> this->productTitle;
+
+	std::cout << "Enter cost: ";
+	std::cin >> this->cost;
+	std::cin.ignore(32767, '\n');
+
+	std::cout << "Enter quantity: ";
+	std::cin >> this->quantity;
+	std::cin.ignore(32767, '\n');
+
 }

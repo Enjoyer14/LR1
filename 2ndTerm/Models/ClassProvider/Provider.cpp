@@ -23,28 +23,28 @@ void Provider::operator=(Provider other)
 
 void Provider::PrintInfo()
 {
-	std::cout << "Имя: " << this->name << '\n' << "Фамилия: " << this->surname << '\n' << "Возраст: " << this->age << '\n' << "Тип продукции: " << this->productType << std::endl << std::endl;
+	std::cout << "Name: " << this->name << '\n' << "Surname: " << this->surname << '\n' << "Age: " << this->age << '\n' << "Product type: " << this->productType << std::endl << std::endl;
 }
 
 void Provider::AddInfo()
 {
-	std::cout << "Введите Имя: ";
+	std::cout << "Enter name: ";
 	std::cin >> this->name;
 
-	std::cout << "Введите Фамилию: ";
+	std::cout << "Enter surname: ";
 	std::cin >> this->surname;
 
-	std::cout << "Введите Возраст: ";
+	std::cout << "Enter age: ";
 	std::cin >> this->age;
 	std::cin.ignore(32767, '\n');
 
-	std::cout << "Введите Логин: ";
+	std::cout << "Enter login: ";
 	std::cin >> this->login;
 
-	std::cout << "Введите Пароль: ";
+	std::cout << "Enter password: ";
 	std::cin >> this->password;
 
-	std::cout << "Введите Тип продукции: ";
+	std::cout << "Enter product type: ";
 	std::cin >> this->productType;
 }
 

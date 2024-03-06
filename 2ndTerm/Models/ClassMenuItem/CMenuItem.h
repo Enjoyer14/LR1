@@ -2,9 +2,8 @@
 
 #include <iostream>
 #include <string>
-#include "C:\Users\stass\OneDrive\Рабочий стол\2ndTerm\Models\ClassUser\User.h"
-#include "C:\Users\stass\OneDrive\Рабочий стол\2ndTerm\Models/ClassWorker/Worker.h"
-#include "C:\Users\stass\OneDrive\Рабочий стол\2ndTerm\Models/ClassProvider/Provider.h"
+#include "/home/sso23ki223/Table/2ndTerm/Models/ClassUser/User.h"
+
 
 using namespace std;
 

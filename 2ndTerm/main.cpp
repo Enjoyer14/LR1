@@ -10,6 +10,8 @@ using namespace std;
 const int ITEMS_NUMBER = 3;
 
 
+// ./main.cpp ./Models/ClassMenuItem/CMenuItem.cpp ./Models/ClassMenu/CMenu.cpp ./Models/ClassUser/User.cpp ./Models/ClassWorker/Worker.cpp ./Models/ClassProvider/Provider.cpp ./Models/ClassProduct/Product.cpp
+
 //work
 int LogIn()
 {
@@ -17,10 +19,10 @@ int LogIn()
     std::string login, password;
     while (isLogIn == false) {
 
-        std::cout << "Введите логин: ";
+        std::cout << "Enter login: ";
         std::cin >> login;
 
-        std::cout << "Введите пароль: ";
+        std::cout << "Enter password: ";
         std::cin >> password;
 
         ifstream fin("Logs.txt");
@@ -33,9 +35,8 @@ int LogIn()
                 {
                     isLogIn = true;
                     fin.close();
-                    std::cout << "Вход выполнен успешно. " << std::endl;
-                    system("pause");
-                    system("cls");
+                    std::cout << "Succesfully. " << std::endl;
+
                     return 1;
                 }
                 else
@@ -43,14 +44,14 @@ int LogIn()
                     isLogIn = false;
                 }
             }
-            std::cout << "Неправильно введен логин или пароль, попробуйте снова." << std::endl;
+            std::cout << "Wrong login or password, try again." << std::endl;
         }
         fin.close();
     }
     return 1;
 } 
 
-#pragma region Работа с массивами
+#pragma region 
 
 //work
 void ExpandArray(FactoryWorker *workers, int& currentCount, int& count)
@@ -137,10 +138,10 @@ void UpdateProvidersInfoInTxt(Provider *providers, int count)
 
 int PrintFactoryInfo(FactoryWorker *human ,int &currentCount, int &count)
 {
-    system("cls");
+
     for (int i{}; i < currentCount; i++)
     {
-        std::cout << i + 1 << "-ый(ой)" << std::endl;
+        std::cout << i + 1 << "-th" << std::endl;
         human[i].PrintInfo();
         std::cout << std::endl;
     }
@@ -148,10 +149,10 @@ int PrintFactoryInfo(FactoryWorker *human ,int &currentCount, int &count)
 }
 int PrintProviderInfo(Provider* human, int& currentCount, int& count)
 {
-    system("cls");
+
     for (int i{}; i < currentCount; i++)
     {
-        std::cout << i + 1 << "-ый(ой)" << std::endl;
+        std::cout << i + 1 << "-th" << std::endl;
         human[i].PrintInfo();
         std::cout << std::endl;
     }
@@ -162,7 +163,7 @@ int FactoryChangeInfo(FactoryWorker *human, int &currentCount, int &count)
 {
     PrintFactoryInfo(human, currentCount, count);
 
-    std::cout << "Выберите изменяемого: ";
+    std::cout << "Choose variant: ";
     int variant{};
     std::cin >> variant;
     std::cin.ignore(32767, '\n');
@@ -179,7 +180,7 @@ int ProviderChangeInfo(Provider* human, int& currentCount, int& count)
 {
     PrintProviderInfo(human, currentCount, count);
 
-    std::cout << "Выберите изменяемого: ";
+    std::cout << "Choose variant: ";
     int variant{};
     std::cin >> variant;
     std::cin.ignore(32767, '\n');
@@ -196,7 +197,6 @@ int ProviderChangeInfo(Provider* human, int& currentCount, int& count)
 
 int HumanAddInfo(FactoryWorker *humans, int &currentCount, int &count)
 {
-    system("cls");
     if (currentCount == count - 1)
     {
         ExpandArray(humans, currentCount, count);
@@ -206,10 +206,10 @@ int HumanAddInfo(FactoryWorker *humans, int &currentCount, int &count)
     return 3;
 }
 
-//меню завода вполне work
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ work
 int Factory()
 {   
-    system("cls");
+
     int count = 100;
     FactoryWorker* workers;
     workers = new FactoryWorker[count];
@@ -217,14 +217,13 @@ int Factory()
     int currentCount = ReadWorkersInfoFromTxt(workers, count);
 
     CMenuItem items[ITEMS_NUMBER]{
-        CMenuItem{"Вывести информацию о сотрудниках.", (CMenuItem::Function)PrintFactoryInfo},
-        CMenuItem{"Изменить информацию о сотруднике.", (CMenuItem::Function)FactoryChangeInfo},
-        CMenuItem{"Добавить информацию о сотруднике.", (CMenuItem::Function)HumanAddInfo}
+        CMenuItem{"Print worker info", (CMenuItem::Function)PrintFactoryInfo},
+        CMenuItem{"Change worker info.", (CMenuItem::Function)FactoryChangeInfo},
+        CMenuItem{"Add human info.", (CMenuItem::Function)HumanAddInfo}
     };
     CMenu menu("Factory Menu", items, ITEMS_NUMBER);
     while (menu.runCommand(workers, currentCount, count)) {
-        system("pause");
-        system("cls");
+;
     };
 
     UpdateWorkersInfoInTxt(workers, currentCount);
@@ -234,10 +233,10 @@ int Factory()
     return 1;
 }
 
-//Поставщики меню (ne work)
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (ne work)
 int Provide()
 {
-    system("cls");
+
     int count = 100;
     Provider* providers;
     providers = new Provider[count];
@@ -245,14 +244,12 @@ int Provide()
     int currentCount = ReadProvidersInfoFromTxt(providers, count);
 
     CMenuItem items[ITEMS_NUMBER]{
-        CMenuItem{"Вывести информацию о поставщиках.", (CMenuItem::Function)PrintProviderInfo},
-        CMenuItem{"Изменить информацию о поставщике.", (CMenuItem::Function)FactoryChangeInfo},
-        CMenuItem{"Добавить информацию о поставщике.", (CMenuItem::Function)HumanAddInfo}
+        CMenuItem{"Print provider info", (CMenuItem::Function)PrintProviderInfo},
+        CMenuItem{"Change provider info.", (CMenuItem::Function)FactoryChangeInfo},
+        CMenuItem{"Add provider info.", (CMenuItem::Function)HumanAddInfo}
     };
     CMenu menu("Provider Menu", items, ITEMS_NUMBER);
-    while (menu.runCommand(providers, currentCount, count)) {
-        system("pause");
-        system("cls");
+    while (menu.runCommand(providers, currentCount, count)) {;
     };
 
     UpdateProvidersInfoInTxt(providers, currentCount);
@@ -262,11 +259,14 @@ int Provide()
     return 2;
 }
 
+// g++ ./main.cpp ./Models/ClassMenuItem/CMenuItem.cpp ./Models/ClassMenu/CMenu.cpp ./Models/ClassUser/User.cpp ./Models/ClassWorker/Worker.cpp ./Models/ClassProvider/Provider.cpp ./Models/ClassProduct/Product.cpp
 
-//Продукция меню (ne work)
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (ne work)
 int Production()
 {
-    
+    Product product;
+    product.AddInfo();
+    product.Print();
     return 3;
 }
 
@@ -278,15 +278,14 @@ int main() {
     LogIn();
 
     CMenuItem items[ITEMS_NUMBER]{
-         CMenuItem{"Сотрудники", Factory},
-         CMenuItem{"Поставщики", Provide},
-         CMenuItem{"Продукция", Production}
+         CMenuItem{"Factory", Factory},
+         CMenuItem{"Provider", Provide},
+         CMenuItem{"Production", Production}
     };
-    CMenu menu("Выбор режима работы", items, ITEMS_NUMBER);
+    CMenu menu("Choosing", items, ITEMS_NUMBER);
 
     while (menu.runCommand()) {
-        system("pause");
-        system("cls");
+
     };
 
     return 0;

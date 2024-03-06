@@ -2,7 +2,7 @@
 
 #include <cstddef>
 #include <string>
-#include "C:\Users\stass\OneDrive\Рабочий стол\2ndTerm\Models\ClassMenuItem/CMenuItem.h"
+#include "/home/sso23ki223/Table/2ndTerm/Models/ClassMenuItem/CMenuItem.h"
 
 using namespace std;
 

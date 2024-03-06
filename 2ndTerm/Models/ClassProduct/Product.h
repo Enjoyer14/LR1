@@ -7,7 +7,7 @@ class Product
 public:
 
 	Product(std::string productType, std::string productTitle, double cost, int quantity);
-
+	Product();
 
 	void Print();
 
@@ -16,7 +16,7 @@ public:
 
 	void SetCost(double cost);
 	void SetQuantity(int quantity);
-
+	void AddInfo();
 
 
 private:

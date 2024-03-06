@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include "string"
-#include "C:\Users\stass\OneDrive\Рабочий стол\2ndTerm\Models\ClassUser\User.h"
+#include "/home/sso23ki223/Table/2ndTerm/Models/ClassUser/User.h"
 
 class Provider : public User
 {
